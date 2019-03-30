@@ -1,0 +1,43 @@
+
+  {% extends "layout.html" %}
+
+  {% block content %}
+
+    <table id="game" align="center">
+      <div>
+        <tr text-align="center">
+          <td id="1x1" onclick="makeamove(this)">{{initialGame.first}}</td>
+          <td id="1x2" onclick="makeamove(this)">{{initialGame.second}}</td>
+          <td id="1x3" onclick="makeamove(this)">{{initialGame.third}}</td>
+        </tr>
+        <tr>
+          <td id="2x1" onclick="makeamove(this)">{{initialGame.fourth}}</td>
+          <td id="2x2" onclick="makeamove(this)">{{initialGame.fifth}}</td>
+          <td id="2x3" onclick="makeamove(this)">{{initialGame.sixth}}</td>
+        </tr>
+        <tr>
+          <td id="3x1" onclick="makeamove(this)">{{initialGame.seventh}}</td>
+          <td id="3x2" onclick="makeamove(this)">{{initialGame.eighth}}</td>
+          <td id="3x3" onclick="makeamove(this)">{{initialGame.ninth}}</td>
+        </tr>
+      </div>
+    </table>
+
+    <div class="gameInfo" id="winner">Vez de X</div>
+    
+    <div class="save">
+      <form action="{{ url_for('home') }}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="first"   id="firstParam">
+        <input type="hidden" name="second"  id="secondParam">
+        <input type="hidden" name="third"   id="thirdParam">
+        <input type="hidden" name="fourth"  id="fourthParam">
+        <input type="hidden" name="fifth"   id="fifthParam">
+        <input type="hidden" name="sixth"   id="sixthParam">
+        <input type="hidden" name="seventh" id="seventhParam">
+        <input type="hidden" name="eighth"  id="eighthParam">
+        <input type="hidden" name="ninth"   id="ninthParam">
+        <input type="hidden" name="flow" value="saving_game">
+        <button type="submit" onclick="updateValuesToPost()">Salvar Jogo</button><br>
+      </form>
+    </div>
+  {% endblock %}

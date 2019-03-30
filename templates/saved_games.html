@@ -1,0 +1,54 @@
+
+  {% extends "layout.html" %}
+
+  <title class="gameTitle">Jogos Salvos</title> 
+
+  {% block content %}
+  	{% if savedGames is defined %}
+	  	<ul>
+	  	{% if savedGames[0] is defined %}
+			{% for g in savedGames %}
+			    <table>
+			        <tr text-align="center">
+			          <td>{{g.first}}</td>
+			          <td>{{g.second}}</td>
+			          <td>{{g.third}}</td>
+			        </tr>
+			        <tr>
+			          <td>{{g.fourth}}</td>
+			          <td>{{g.fifth}}</td>
+			          <td>{{g.sixth}}</td>
+			        </tr>
+			        <tr>
+			          <td>{{g.seventh}}</td>
+			          <td>{{g.eighth}}</td>
+			          <td>{{g.ninth}}</td>
+			          <br/>
+			        </tr>
+			        <tr>
+						<form action="{{ url_for('home') }}" method="post" enctype="multipart/form-data">
+			          		<input type="hidden" name="first" 	value="{{g.first}}">
+			          		<input type="hidden" name="second" 	value="{{g.second}}">
+			          		<input type="hidden" name="third" 	value="{{g.third}}">
+			          		<input type="hidden" name="fourth" 	value="{{g.fourth}}">
+			          		<input type="hidden" name="fifth" 	value="{{g.fifth}}">
+			          		<input type="hidden" name="sixth" 	value="{{g.sixth}}">
+			          		<input type="hidden" name="seventh" value="{{g.seventh}}">
+			          		<input type="hidden" name="eighth" 	value="{{g.eighth}}">
+			          		<input type="hidden" name="ninth" 	value="{{g.ninth}}">
+							<input type="hidden" name="flow" 	value="selecting_game">
+			          		Salvo em: {{g.date}}
+			          		<input type="image" name="submit" 
+			          				src="/static/selecionar.png" alt="Selecionar Jogo" 
+			          				style="width: 24px; height: 24px" border="0"/>
+			          	</form>
+			          </tr>
+			    </table>
+				</br>
+			{% endfor %}
+	  	{% else %}
+	  		<h3>{{msg}}</h3>
+		{% endif %}
+		</ul>
+	{% endif %}
+  {% endblock %}
